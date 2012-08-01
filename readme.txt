@@ -3,7 +3,7 @@ Contributors: splurgy, dougymak, HaiVo
 Donate link:
 Tags: splurgy, social, social engagement, social media, social marketing
 Requires at least: 3.4
-Tested up to: 2.1
+Tested up to: 3.4
 Stable tag: 4.3
 License: MITL
 License URI: 
