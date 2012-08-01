@@ -4,7 +4,7 @@ Donate link:
 Tags: splurgy, social, social engagement, social media, social marketing, social promotions, social giveaway, social sweepstakes, social coupons, social offers
 Requires at least: 3.4
 Tested up to: 3.4
-Stable tag: 4.3
+Stable tag: 1.0
 License: MITL
 License URI: 
 
@@ -28,6 +28,10 @@ Splurgy for WordPress
 
 
 == Installation ==
+
+Quick and easy installation
+
+1. From your WordPress
 
 Manual Installation
 
@@ -63,6 +67,13 @@ Your offer ID is be found in your Splurgy Account under the 'Offers' tabs.
 The best way to contact us is by email at support@splurgy.com.
 
 == Screenshots ==
+
+1. This is a screen shot of the Splurgy 'Settings Page' after setting up your token. A preview will test to see if your token is setup properly.
+
+2. This is a screen shot of the Splurgy Offers box for inputting your offer ID that will appear when adding a new post.
+
+3. This is a screen shot of the Splurgy Offers box that will appear when adding a new page.
+
 
 == Changelog ==
 
