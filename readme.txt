@@ -8,7 +8,7 @@ Stable tag: 4.3
 License: MITL
 License URI: 
 
-Build your social media presence by having your users socially engage into your brand by using Splurgy.
+Build your social media presence by having your users socially engage into your brand using Splurgy.
 
 == Description ==
 
