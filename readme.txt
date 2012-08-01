@@ -1,5 +1,5 @@
 === Plugin Name ===
-Contributors: dougymak, HaiVo
+Contributors: splurgy, dougymak, HaiVo
 Donate link:
 Tags: splurgy, social, social engagement, social media, social marketing
 Requires at least: 3.4
