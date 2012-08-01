@@ -1,0 +1,4 @@
+<div class='offerPowerSwitch'>
+    <input {$checked} type='checkbox' name='offerPowerSwitch' id='offerPowerSwitch' />
+</div>
+<div id='pageOfferTooltip'><a id='pageOfferTooltipp' >What does the switch do?</a></div>

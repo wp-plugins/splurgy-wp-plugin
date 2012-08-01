@@ -1,0 +1,22 @@
+#offerId, .offerPowerSwitch {
+    margin: 0 0 5px 0;
+}
+
+/* simpletip */
+a#postOfferTooltip {
+    cursor: help;
+    border-bottom: 1px dotted;
+}
+
+.tooltip{
+    padding: 10px 13px;
+    z-index: 100;
+    color: #303030;
+    background-color: #F5F5B5;
+    border: 1px solid #DECA7E;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+}
+

@@ -1,0 +1,5 @@
+<div style='clear: both; width: 100%; text-align: center;'>
+    <a href={$permalink} style='color: black;'>
+        Click here to see the offer
+    </a>
+</div>
