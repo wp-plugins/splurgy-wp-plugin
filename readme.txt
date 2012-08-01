@@ -1,5 +1,6 @@
 === Plugin Name ===
 Contributors: dougymak, HaiVo
+Donate link:
 Tags: splurgy, social, social engagement, social media, social marketing
 Requires at least: 3.4
 Tested up to: 2.1
@@ -19,6 +20,7 @@ Splurgy analytics automatically installed and begins tracking after a one-time t
 A Splurgy account is required.
 
 Splurgy for WordPress
+
 * No coding knowledge needed
 * Social offers analytics
 * Social engagements for Deals, Giveaways, and Coupons
@@ -27,13 +29,14 @@ Splurgy for WordPress
 
 == Installation ==
 
-Manual Installation:
+Manual Installation
+
 1. Upload the `splurgy-wp-plugin` folder to the `/wp-content/plugins/` directory
-1. Go to 'Plugins' menu in your WordPress dashboard 
-1. Click 'Install' for 'Splurgy WP Plugin'
-1. Now on the side bar the name 'Splurgy' will appear, click on it and go to 'Settings'
-1. Setup your channel token, which is found on your Splurgy Account on the 'Channels' tab
-1. A box titled "Splurgy Offers" will appear on the right side when adding a 'Post' or 'Page'
+1. Go to `Plugins` menu in your WordPress dashboard 
+1. Click `Install` for `Splurgy WP Plugin`
+1. Now on the side bar the name `Splurgy` will appear, click on it and go to `Settings`
+1. Setup your channel token, which is found on your Splurgy Account on the `Channels` tab
+1. A box titled `Splurgy Offers` will appear on the right side when adding a `Post` or `Page`
 
 
 
@@ -59,15 +62,12 @@ Your offer ID is be found in your Splurgy Account under the 'Offers' tabs.
 
 The best way to contact us is by email at support@splurgy.com.
 
-
 == Screenshots ==
-
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the directory of the stable readme.txt, so in this case, `/tags/4.3/screenshot-1.png` (or jpg, jpeg, gif)
-2. This is the second screen shot
 
 == Changelog ==
 
 = 1.0 =
 Splurgy WP Plugin is live!
 
+
+== Upgrade Notice ==
