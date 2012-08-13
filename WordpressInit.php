@@ -3,7 +3,7 @@
 Plugin Name: Splurgy WP Plugin
 Plugin URI: https://github.com/splurgy/plugins/
 Description: This plugin will allow users to easily add offers at the end of their post
-Version: 1.0
+Version: 1.00.001
 Author: Splurgy
 Author URI: http://www.splurgy.com
 License: MIT
