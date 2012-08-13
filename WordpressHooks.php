@@ -74,12 +74,19 @@ class WordpressHooks
 
         wp_enqueue_script( 'splurgy-jquery-settings', plugins_url( '/splurgy-wp-plugin/js/splurgy-jquery-settings.js' ));
         wp_enqueue_style('splurgy-css-settings', plugins_url( '/splurgy-wp-plugin/css/splurgy-css-settings.css' ));
+        
+        wp_enqueue_script( 'splurgy-jquery-postmetabox', plugins_url( '/splurgy-wp-plugin/js/splurgy-jquery-metabox.js' ));
+        
+        wp_enqueue_script( 'jquery-iphone-checkboxes', plugins_url( '/splurgy-wp-plugin/js/vendors/iphone-style-checkboxes/jquery/iphone-style-checkboxes.js' ));
+        
+        // numeric
+        wp_enqueue_script( 'jquery-numeric', plugins_url( '/splurgy-wp-plugin/js/vendors/numeric/jquery.numeric.js' ));
 
     }
 
     public function javascriptEnque() {
 
-        wp_enqueue_script( 'splurgy-jquery-postmetabox', plugins_url( '/splurgy-wp-plugin/js/splurgy-jquery-metabox.js' ));
+        
 
         wp_enqueue_style( 'splurgy-css-metabox', plugins_url( '/splurgy-wp-plugin/css/splurgy-css-metabox.css' ));
 
@@ -87,11 +94,7 @@ class WordpressHooks
         /* should refactor into other functions or class */
         // iphone-style-checkboxes
         wp_enqueue_style( 'jquery-iphone-checkboxes-css', plugins_url( '/splurgy-wp-plugin/js/vendors/iphone-style-checkboxes/style.css' ));
-        wp_enqueue_script( 'jquery-iphone-checkboxes', plugins_url( '/splurgy-wp-plugin/js/vendors/iphone-style-checkboxes/jquery/iphone-style-checkboxes.js' ));
-
-        // numeric
-        wp_enqueue_script( 'jquery-numeric', plugins_url( '/splurgy-wp-plugin/js/vendors/numeric/jquery.numeric.js' ));
-
+        
     }
 
 }
