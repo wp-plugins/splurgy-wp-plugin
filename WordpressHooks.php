@@ -1,7 +1,7 @@
 <?php
 
 /*
- * All wordpress hooks should go here
+ * All wordpress hooks should go here.
  */
 
 class WordpressHooks

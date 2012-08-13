@@ -1,7 +1,7 @@
 <?php
 
 /*
- * All functions for hooks and will output HTML should go here
+ * All functions for hooks and will output HTML should go here.
  * Wordpress is so dirty, we have to echo!
  */
 require_once 'splurgy-lib/SplurgyPager.php';
