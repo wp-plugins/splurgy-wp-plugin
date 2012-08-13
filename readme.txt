@@ -4,7 +4,7 @@ Donate link:
 Tags: splurgy, social, social engagement, social media, social marketing, social promotions, social giveaway, social sweepstakes, social coupons, social offers
 Requires at least: 3.4
 Tested up to: 3.4
-Stable tag: 1.1.1
+Stable tag: 1.00.001
 License: MITL
 License URI: 
 
@@ -77,7 +77,7 @@ The best way to contact us is by email at support@splurgy.com.
 
 == Changelog ==
 
-= 1.1 =
+= 1.00.001 =
 Fix bug with the page embed.
 
 = 1.0 =
