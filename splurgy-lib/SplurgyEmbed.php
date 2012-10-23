@@ -20,11 +20,17 @@ class SplurgyEmbed
 {
 
     private $_file;
+    private $_passedToken;
 
-    public function __construct() {
-        $this->_file = dirname(__FILE__) . '/token.config';
-        // Create a token.config file
-        $this->createTokenConfig();
+    // Token can optionally be passed in. Persistence of token should be handled
+    // by CMS system in this case (store in CMS database).
+    public function __construct($token=null) {
+        $this->_passedToken = $token;
+        if (empty($token)) {
+           $this->_file = dirname(__FILE__) . '/token.config';
+            // Create a token.config file
+            $this->createTokenConfig(); 
+        } 
     }
 
     private function createTokenConfig() {
@@ -32,8 +38,7 @@ class SplurgyEmbed
              file_put_contents($this->_file,'');
         }
     }
-
-
+    
     public function setToken($token) {
         $token = preg_replace('/[^a-zA-Z0-9_]*/', '', $token);
         $token = str_replace(' ', '', $token);
@@ -44,19 +49,29 @@ class SplurgyEmbed
         if(!preg_match('/^c_[a-zA-Z0-9]{40}$/', $token)) {
             throw new TokenErrorException("Your token is incorrect! Make sure you copied it correctly with no spaces!");
         }
-        file_put_contents($this->_file, $token);
-
+        if(file_exists($this->_file)) {
+            file_put_contents($this->_file, $token);
+        } else {
+            $this->_passedToken = $token;
+        }   
     }
 
     public function getToken() {
-        if(file_exists($this->_file)) {
+        if (!empty($this->_passedToken)) {
+            $token = $this->_passedToken;
+            return $token;
+        } elseif (file_exists($this->_file)) {
             $token = file_get_contents($this->_file);
-        }
-        return $token;
+            return $token;
+        }     
     }
 
     public function deleteToken(){
-        file_put_contents($this->_file,'');
+        if(file_exists($this->_file)) {
+            file_put_contents($this->_file, '');
+        } elseif(!empty($this->_passedToken)) {
+            $this->_passedToken = null;
+        }
     }
 
 
@@ -71,11 +86,13 @@ class SplurgyEmbed
      *
      *
      */
-    public function getEmbed($templateName=null, $offerId=null) {
+    public function getEmbed($templateName=null, $offerId=null, $testmode=null, $unlocktext=null) {
          return new SplurgyEmbedGenerator(
                     $this->getToken(),
                     $templateName,
-                    $offerId
+                    $offerId,
+                    $testmode,
+                    $unlocktext
                 );
     }
 
