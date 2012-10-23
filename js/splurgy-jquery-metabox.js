@@ -11,13 +11,6 @@ jQuery(document).ready(function($) {
         }
     )
 
-
-      var onchange_checkbox = ($('.onchange :checkbox')).iphoneStyle({
-        onChange: function(elem, value) {
-          $('span#status').html(value.toString());
-        }
-      });
-
     // iphone-style-checkboxes
     $(".offerPowerSwitch :checkbox").iphoneStyle({
         checkedLabel: 'ON',
@@ -28,21 +21,40 @@ jQuery(document).ready(function($) {
             } else {
                 $('#offerWrapper').hide()
             }
+            if( $('#advanced').is(':hidden') ) {
+                $('#advanced').show()
+            } else {
+                $('#advanced').hide()
+            }
 
 
         }
     })
+    
+
+    /* advanced click to open advanced menu */
+    $("#advancedPanel").hide();
+
+    $('#advanced a').click(function(event) {
+        
+        $('#advancedPanel').toggle();
+    });
 
     // simpletip
     $('#postOfferTooltip').simpletip({
-        content: "You can find a offer id in your<br/> <a href='https://offers.splurgy.com/dashboard'>Splurgy Control Panel</a><br/>Click <b>Offers</b> in the navigation bar, and find the offer ID of the offer you would like to appear for this post",
+        content: "You can find your offer id in the<br/> <a href='http://offers.splurgy.com/campaigns' target='_blank'>Splurgy Campaigns Panel</a>.<br/>",
         fixed: true
     });
     
     $('#pageOfferTooltip').simpletip({
-        content: "Once the switch is turned on it will take the default offer on your channel.",
+        content: "Turn the switch on and enter the specific offer-id to set a page lock.",
         fixed: true
     });
+    
+    $('#testmodeq').simpletip({
+        content: "Check this box if you'd like to test if page lock will work.",
+        fixed: true
+    });    
 
 });
 

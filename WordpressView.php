@@ -22,7 +22,7 @@ class WordpressView
     public function __construct()
     {
         $this->_splurgyPager = new SplurgyPager();
-        $this->_splurgyEmbed = new SplurgyEmbed();
+        $this->_splurgyEmbed = new SplurgyEmbed(get_option('splurgyToken')); 
         $this->_templateGenerator = new TemplateGenerator();
         $this->_path = dirname(__FILE__). '/view-templates/';
         $this->_templateGenerator->setPath($this->_path);
@@ -44,13 +44,13 @@ class WordpressView
     }
 
 
-    public function missingTokenNotice()
+    public function missingTokenNotice() 
     {
-        $file = file_get_contents(dirname(__FILE__) . '/splurgy-lib/token.config');
-        if (is_admin() && empty($file)) {
+        $token = get_option('splurgyToken');
+        if (is_admin() && !isset($token)) {	
             $url = admin_url('admin.php?page=settings');
-            $this->setWordPressMessage("<b>Splurgy Offers</b> To use this plugin, please configure your <a href='$url'>settings</a>", true);
-        }
+            $this->setWordPressMessage("<b>Splurgy Offers</b> To use this plugin, please configure your <a href='$url'>settings</a>", true);	
+         }
     }
 
 
@@ -87,23 +87,45 @@ class WordpressView
         wp_nonce_field( plugin_basename( __FILE__ ), 'splurgyOfferNonce' );
 
         $splurgyOfferPowerSwitchState = get_post_custom_values('SplurgyOfferPowerSwitch');
+        $splurgyOfferId = get_post_custom_values('SplurgyOfferId');
+        $TestMode = get_post_custom_values('TestMode');
+        $unlocktext = get_post_custom_values('unlocktext');
+        $unlocktextinput = '';
         $checked = '';
+        $testchecked = '';
         $showOfferId = 'style="display: none;"';
 
         if('on' == $splurgyOfferPowerSwitchState[0]) {
             $checked = "checked='checked'";
             $showOfferId = "style='display: inline;'";
         }
+        
+        if ('true' == $TestMode[0] ) {
+            $testchecked = 'checked=checked';
+        }
+        if ('false' == $TestMode[0] ) {
+            $testchecked = '';
+        }
+        
+        if (!empty($unlocktext[0]) && $unlocktext[0] != 'true'){
+            $unlocktextinput = $unlocktext[0];
+        }
+        
+        $currentOfferId =  "Default Offer is set";
+        if(!empty($splurgyOfferId)) {
+            $offerId = $splurgyOfferId[0];
+            $currentOfferId =  "Current showing offer #: <b>" .$offerId. "</b>";
+        } 
 
         $this->_templateGenerator->setTemplateName('pageMetaBoxOfferList');
-        $this->_templateGenerator->setPatterns('{$checked}');
-        $this->_templateGenerator->setReplacements($checked);
+        $this->_templateGenerator->setPatterns(array('{$checked}', '{$testchecked}', '{$showOfferId}', '{$currentOfferId}', '{$unlocktextinput}'));
+        $this->_templateGenerator->setReplacements(array($checked, $testchecked, $showOfferId, $currentOfferId, $unlocktextinput));
         echo $this->_templateGenerator->getTemplate();
     }
 
     public function settingsPage()
     {
-        $token = $this->_splurgyEmbed->getToken();
+        $token = $this->_splurgyEmbed->getToken(); 
         $this->settingsPageView($token);
     }
 
@@ -141,6 +163,7 @@ class WordpressView
         if (isset($_POST['token'])) {
             try {
                 $this->_splurgyEmbed->setToken($_POST['token']);
+                update_option('splurgyToken', $_POST['token']);
                 $this->setWordPressMessage('Successfully saved token!');
             } catch (Exception $e) {
                 $this->setWordPressMessage($e->getMessage() , true);
@@ -160,13 +183,15 @@ class WordpressView
         echo $this->_templateGenerator->getTemplate();
     }
 
-    public function offer($content)
+    public function offer($content) //TODO: remname since both offer and content-lock can be created here
     {
         echo $content;
         $splurgyOfferId = get_post_custom_values('SplurgyOfferId');
+        $testmodevalue = get_post_custom_values('TestMode');
+        $unlocktextvalue = get_post_custom_values('unlocktext');
         $splurgyOfferPowerSwitchState = get_post_custom_values('SplurgyOfferPowerSwitch');
         if( 'off' != $splurgyOfferPowerSwitchState[0] && null != $splurgyOfferPowerSwitchState[0]) {
-            if(!empty($splurgyOfferId)) {
+            if(!empty($splurgyOfferId) && !is_page()) {
                 $offerId = $splurgyOfferId[0];
                 if ((is_single() || $this->_offerCount < 3)) {
                     echo '<a name="SplurgyOffer"></a>';
@@ -179,7 +204,13 @@ class WordpressView
                     $this->_templateGenerator->setReplacements("" . get_permalink() . "#SplurgyOffer");
                     echo $this->_templateGenerator->getTemplate();
                 }
-            } elseif(is_page()) {
+            } elseif(is_page() && !empty($splurgyOfferId)) {
+                // TODO: make this dynamic based on type ('page-offer' or 'content-lock')
+                $offerId = $splurgyOfferId[0];
+                $testmode = $testmodevalue[0];
+                $unlocktext = $unlocktextvalue[0];
+                echo $this->_splurgyEmbed->getEmbed('content-lock', $offerId, $testmode, $unlocktext)->getTemplate(); // 'page-offer'
+            } else {
                 echo $this->_splurgyEmbed->getEmbed('page-offer')->getTemplate();
             }
         }
@@ -222,13 +253,34 @@ class WordpressView
         if (!current_user_can('edit_post', $post_id)) {
             return;
         }
-
+        
         $offerPowerSwitchState = $_POST['offerPowerSwitch'];
         if( is_null($offerPowerSwitchState)) {
             $offerPowerSwitchState = 'off';
         }
         add_post_meta($post_id, 'SplurgyOfferPowerSwitch', $offerPowerSwitchState, true) or update_post_meta($post_id, 'SplurgyOfferPowerSwitch', $offerPowerSwitchState);
+        
+        $testmode = $_POST['testmode'];
+        if(isset($_POST['testmode'])) {
+            $testmode = 'true';
+        }
+        else {
+            $testmode = 'false';
+        }
+        ;
 
+        add_post_meta($post_id, 'TestMode', $testmode, true) or update_post_meta($post_id, 'TestMode', $testmode);
+        
+        $unlocktext = $_POST['pagelocktext'];
+        
+        if(empty($_POST['pagelocktext'])){
+            $unlocktext= 'true';
+        }
+        ;
+        
+        add_post_meta($post_id, 'unlocktext', $unlocktext, true) or update_post_meta($post_id, 'unlocktext', $unlocktext);
+
+        
         $offerId = intval(trim($_POST['offerId']));
         if( 0 >= $offerId ) {
             return;
@@ -236,8 +288,11 @@ class WordpressView
 
         add_post_meta($post_id, 'SplurgyOfferId', $offerId, true) or update_post_meta($post_id, 'SplurgyOfferId', $offerId);
 
-
-
+    }
+    
+    public function addButtonsOnInit()
+    {
+        add_filter('mce_buttons', array($this, 'addButtonToPost'));
     }
 
 }
