@@ -1,4 +1,4 @@
-<div style='clear: both; width: 100%; text-align: center;'>
+<div style='clear: both; width: 100%; text-align: center;' id="splurgy-page-offer">
     <a href={$permalink} style='color: black;'>
         Click here to see the offer
     </a>

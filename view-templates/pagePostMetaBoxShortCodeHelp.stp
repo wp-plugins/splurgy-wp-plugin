@@ -1,0 +1,7 @@
+<div class="text_help_for_shortcode">
+    <label for="shortcode_help">The 'splurgy' shortcode can be used in its simplest form like this </br> </br>
+[splurgy] </br> </br>
+and will display the active promotion assigned to this channel. </br> </br>
+You can also specify a valid offer id of the promotion </br> </br>
+[splurgy offerid=xxx] </label>
+</div>
