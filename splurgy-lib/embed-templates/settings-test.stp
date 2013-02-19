@@ -1,7 +1,0 @@
-<!-- start Splurgy Embed widget --><script type="text/javascript">
-window._splurgy_frames = window._splurgy_frames || [];
-window._splurgy_frames.push({
-    offer_id: null, // set this value to a specific offer ID to hardcode what is shown
-    test_mode: true // set to true to enable diagnostic mode
-}); // this embed will expand into the area containing it
-</script><div class="splurgy-frame-un"></div><!-- end Splurgy Embed widget -->

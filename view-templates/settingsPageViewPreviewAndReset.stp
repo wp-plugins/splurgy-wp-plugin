@@ -1,8 +1,0 @@
-<div id='settings-preview'><h2>Preview:</h2>
-    {$embed}
-</div>
-<form name='delete' method='post'><br/></br/>
-    <h2>Delete your channel token</h2>
-    <input type='hidden' name='delete' value='true' />
-    <input type='submit' value='Reset' />
-</form><br/>
