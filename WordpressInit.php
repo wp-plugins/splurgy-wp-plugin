@@ -45,7 +45,7 @@ require_once 'WordpressHooks.php';
 require_once 'ShortCodes.php';
 
 /**
- * WordPress Settings View Class definition This file runs the plugin
+ * Initiates the plugin
  *
  * @category WordPressInit
  * @package  PackageName
@@ -57,6 +57,7 @@ class WordpressInit
 {
     protected $wpHooks;
     protected $wpView;
+
     /**
      * Wordpress Init construct function
      */
