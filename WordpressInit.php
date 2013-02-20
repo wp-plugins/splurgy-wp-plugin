@@ -2,9 +2,9 @@
 /**
    Plugin Name: Splurgy WP Plugin
    Plugin URI: https://github.com/splurgy/plugins/
-   Description: This plugin will allow users to easily add offers at the end of 
+   Description: This plugin will allow publishers to easily embed ad units at the end of 
    their post
-   Version: 1.1.1
+   Version: 2
    Author: Splurgy
    Author URI: http://www.splurgy.com
    License: MIT
@@ -42,7 +42,7 @@
 ?>
 <?php
 require_once 'WordpressHooks.php';
-require_once 'WordpressView.php';
+require_once 'ShortCodes.php';
 
 /**
  * WordPress Settings View Class definition This file runs the plugin
@@ -62,10 +62,8 @@ class WordpressInit
      */
     public function __construct()
     {
-        $this->wpView = new WordpressView();
+        $this->wpView = new ShortCodes();
         $this->wpHooks = new WordpressHooks($this->wpView);
-        //$wpView = new WordpressView();
-        //$hook = new WordpressHooks($wpView);
     }
 }
 
