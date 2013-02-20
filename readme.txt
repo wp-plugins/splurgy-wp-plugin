@@ -4,7 +4,7 @@ Donate link:
 Tags: splurgy, social, social engagement, social media, social marketing, social promotions, social giveaway, social sweepstakes, social coupons, social offers
 Requires at least: 3.4
 Tested up to: 3.4
-Stable tag: 2
+Stable tag: 2.0.1
 License: MITL
 License URI: 
 
@@ -64,6 +64,9 @@ The best way to contact us is by email at support@splurgy.com.
 
 
 == Changelog ==
+= 2.0.1 =
+Cleans up all database from version 1.1.1 on deactivate
+
 = 2.0.0 =
 Added short code support for the ad unit changes. Removed version 3 of coupon, giveaway, and pagelock embed functionality. All units are embeded through the short code system now.
 

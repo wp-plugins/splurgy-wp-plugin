@@ -1,6 +1,5 @@
 <?php
 /**
- * All functions to hooks to settings/admin/view page are here.
  * All wordpress hooks should go here.
  *
  * PHP version 5.3.1
@@ -9,9 +8,9 @@
 
 
 /**
- * WordPress Settings View Class definition
+ * WordPress Hooks Class Definition
  *
- * @category WordPressSettingsView
+ * @category WordPressHooks
  * @package  PackageName
  * @author   Splurgy <support@splurgy.com>
  * @license  http://opensource.org/licenses/MIT MIT
@@ -33,7 +32,16 @@ class WordpressHooks
     {
         $this->_shortCodes = $shortCodes;
         add_shortcode('splurgy_adunit', array($this->_shortCodes, 'adUnit'));
+        register_deactivation_hook(dirname(__FILE__). '/WordpressInit.php', array($this, 'deactivate'));
+    }
 
+    /**
+     * Clears database data from V3 
+     *      
+     */
+    public function deactivate() 
+    {   
+        delete_option('splurgyToken');
     }
 }
 
