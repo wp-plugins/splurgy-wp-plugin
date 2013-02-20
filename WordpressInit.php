@@ -4,7 +4,7 @@
    Plugin URI: https://github.com/splurgy/plugins/
    Description: This plugin will allow publishers to easily embed ad units at the end of 
    their post
-   Version: 2
+   Version: 2.0.1
    Author: Splurgy
    Author URI: http://www.splurgy.com
    License: MIT
