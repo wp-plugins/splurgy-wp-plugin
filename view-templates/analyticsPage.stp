@@ -1,0 +1,6 @@
+<h2>Analytics</h2>
+    <img src={$img} >
+        <br/>
+        <br/>
+            "To see more on analytics click on the link below<br/>"
+    <a href='#splurgycp'>Go to your Splurgy Control Panel</a>

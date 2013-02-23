@@ -4,7 +4,7 @@ Donate link:
 Tags: splurgy, social, social engagement, social media, social marketing, social promotions, social giveaway, social sweepstakes, social coupons, social offers
 Requires at least: 3.4
 Tested up to: 3.4
-Stable tag: 2.0.1
+Stable tag: 1.1.1
 License: MITL
 License URI: 
 
@@ -12,13 +12,18 @@ Build your social media presence by having your users socially engage into your 
 
 == Description ==
 
-This plugin allows Splurgy Publishers to use short code for embedding ad unit promotions.
+This plugin allows Splurgy users to easily display offers on their WordPress blogs. You can manage your Splurgy offers without 
+any knowledge of coding (No knowledge of HTML, CSS, or PHP needed). The plugin was built with the customer in mind, and all the tools you need 
+is in this plugin. You can turn on offers for any given page or even specify which offer you would like to show on a post.
+Splurgy analytics automatically installed and begins tracking after a one-time token setup. 
 
 A Splurgy account is required.
 
 Splurgy for WordPress
 
 * No coding knowledge needed
+* Social offers analytics
+* Social engagements for Deals, Giveaways, and Coupons
 * Simple and easy
 
 
@@ -37,41 +42,43 @@ Manual Installation
 1. Setup your channel token, which is found on your Splurgy Account on the `Channels` tab
 1. A box titled `Splurgy Offers` will appear on the right side when adding a `Post` or `Page`
 
-== Usage ==
-The new changes allow you to use shortcodes to embed an ad unit. 
-
-For example,
-[splurgy_adunit token="c_a11b459df7a57b193be1ca367ea26e8aedf94779" dimension="400x460"]
 
 
 == Frequently Asked Questions ==
 
 = Do I need a Splurgy Account to use this? =
 
-Yes, you do. It's free to use, sign up now at http://www.splurgy.com/
+Yes, you do. We do offer a 14 day free trial for you to test us out.
 
 = What is a token? =
 
-A token is a random bunch of numbers and letters that is assigned to a "Location" used to help keep track of your analytics and offers.
+A token is a random bunch of numbers and letters that is assigned to a channel used to help keep track of your analytics and offers.
 
 = Where can I find my token? =
 
-You can find your token in your Splurgy control panel under "Locations".
+Your token is found in your Splurgy Account dashboard under the 'Channels' tab. 
+
+= Where do I find my offer ID? =
+
+Your offer ID is be found in your Splurgy Account under the 'Offers' tabs. 
 
 = What is the best way to contact you if I have more questions? =
 
 The best way to contact us is by email at support@splurgy.com.
 
+== Screenshots ==
+
+1. This is a screen shot of the Splurgy 'Settings Page' after setting up your token. A preview will test to see if your token is setup properly.
+
+2. This is a screen shot of the Splurgy Offers box for inputting your offer ID that will appear when adding a new post.
+
+3. This is a screen shot of the Splurgy Offers box that will appear when adding a new page.
+
 
 == Changelog ==
-= 2.0.1 =
-Cleans up all splurgy data in the database from version 1.1.1 on deactivate
-
-= 2.0.0 =
-Added short code support for the ad unit changes. Removed version 3 of coupon, giveaway, and pagelock embed functionality. All units are embeded through the short code system now.
 
 = 1.1.1 =
-Splurgy Short Code functionality added. Refactoring of code to reduce complexity of functions. Many changes
+Splurgy Short Code functionality added. Refactoring of code to reduce complexity of functions. Many changes.
 
 = 1.1 =
 Page lock feature added. Token storage updated. Many changes.

@@ -1,0 +1,9 @@
+<div class='offerPowerSwitch'>
+    <input {$checked} type='checkbox' name='offerPowerSwitch' id='offerPowerSwitch' />
+</div>
+
+<div id='offerWrapper'  {$showOfferId}>
+    {$currentOfferId}
+    <input type='text' placeholder='Type the Splurgy offer's ID' name='offerId' id='offerId' /><br/>
+    <a id='postOfferTooltip' >Where is my offer id?</a>
+</div>

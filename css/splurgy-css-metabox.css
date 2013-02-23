@@ -1,0 +1,52 @@
+#offerId, .offerPowerSwitch {
+    margin: 0 0 5px 0;
+}
+
+/* simpletip */
+a#postOfferTooltip {
+    cursor: help;
+    border-bottom: 1px dotted;
+}
+a#pageOfferTooltipp {
+    cursor: help;
+    border-bottom: 1px dotted;
+    position: relative;
+    left: 115px;
+    bottom: 30px;
+    
+}
+div#advanced {
+    margin-top: 10px;
+    margin-bottom: -10px;
+}
+div#advanced a#Advanced {
+    text-decoration: underline;
+}
+div#advancedPanel {
+    margin-top: 5px;
+}
+div#advancedPanel label#pagelocktext {
+    float: left;
+}
+div#advancedPanel input#pagelocktextinput {
+    margin-top: 5px;
+    margin-bottom:10px;
+}
+a#testmodeq {
+    margin-left: 2px;
+    cursor: help;
+    border-bottom: 1px dotted;
+
+}
+.tooltip{
+    padding: 10px 13px;
+    z-index: 100;
+    color: #303030;
+    background-color: #F5F5B5;
+    border: 1px solid #DECA7E;
+    font-family: sans-serif;
+    font-size: 12px;
+    line-height: 18px;
+    text-align: center;
+}
+

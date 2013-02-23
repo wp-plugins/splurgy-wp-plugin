@@ -1,0 +1,29 @@
+<div class='offerPowerSwitch'>
+    <input {$checked} type='checkbox' name='offerPowerSwitch' id='offerPowerSwitch' />
+</div>
+
+<div id='pageOfferTooltip'><a id='pageOfferTooltipp' >What does the switch do?</a></div>
+
+
+<div id='offerWrapper'  {$showOfferId}>
+    {$currentOfferId}
+    <input type='text' placeholder='Enter page-lock offer id' name='offerId' id='offerId' /><br/>
+    <a id='postOfferTooltip' >Where is my offer id?</a>
+</div>
+
+<div id="advanced">
+  <a id="Advanced" title="Advanced">Advanced Menu</a>
+  <div id="advancedPanel">
+
+<!-- leave this commented out until "unlock_instructions:" field in content-lock.stp can be changed from 'true'
+
+    <label id="pagelocktextlabel">Page Lock Text:</label>
+    <input name="pagelocktext" id="pagelocktext" type="text" placeholder='Enter unlock text' value="{$unlocktextinput}">
+
+--!>
+  <div class='testmode'>
+      <input {$testchecked} type='checkbox' name='testmode' id='testmode' />
+      <label id="testmodelabel">Test mode</label><a id="testmodeq">?</a>
+    </div>
+  </div>
+</div>​

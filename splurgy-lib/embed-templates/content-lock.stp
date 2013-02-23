@@ -1,0 +1,11 @@
+<!-- start Splurgy Embed widget --><script type="text/javascript">
+window._splurgy_locks = window._splurgy_locks || [];
+window._splurgy_locks.push({
+    test_mode: {$testmode}, // set to true to enable diagnostic mode
+    offer_id: {$offerid}, // set this value to a specific offer ID to hardcode what is shown
+    unlock_instructions: {$unlocktext}
+});
+</script><!-- Splurgy Registration end -->
+
+<div id="splurgy-page-offer"></div>
+

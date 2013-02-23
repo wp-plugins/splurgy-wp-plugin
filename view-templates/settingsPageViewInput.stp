@@ -1,0 +1,10 @@
+{$message}
+<form name='input' method='post' id='token-form'>
+    <input type='text' placeholder='Type your token' name='token' />
+    <input type='submit'  class='ask-custom' value='{$value}' />
+    <div id='settingPageTooltip'><a id='settingPageTooltip' >Where is my token?</a></div>
+</form>
+
+{$previewAndReset}
+
+If you have any questions please email support@splurgy.com
