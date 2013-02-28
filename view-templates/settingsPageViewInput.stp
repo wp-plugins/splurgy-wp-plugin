@@ -3,8 +3,10 @@
     <input type='text' placeholder='Type your token' name='token' />
     <input type='submit'  class='ask-custom' value='{$value}' />
     <div id='settingPageTooltip'><a id='settingPageTooltip' >Where is my token?</a></div>
-</form>
-
-{$previewAndReset}
-
+</form><br/>
+<form name='delete' method='post'><br/></br/>
+    <h2>Delete Default Location Token</h2>
+    <input type='hidden' name='delete' value='true' />
+    <input type='submit' value='Delete' />
+</form><br/>
 If you have any questions please email support@splurgy.com

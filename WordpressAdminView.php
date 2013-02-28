@@ -12,8 +12,7 @@
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     http://www.splurgy.com Splurgy
  */
-require_once 'splurgy-lib/SplurgyPager.php';
-require_once 'splurgy-lib/SplurgyEmbed.php';
+
 require_once 'splurgy-lib/TemplateGenerator.php';
 
 /**
@@ -29,9 +28,6 @@ require_once 'splurgy-lib/TemplateGenerator.php';
 class WordPressAdminView
 {
     
-    //private $_offerCount = 0;
-    private $_splurgyPager;
-    private $_splurgyEmbed;
     private $_templateGenerator;
     private $_path;
     //private $_messages = array();
@@ -41,8 +37,6 @@ class WordPressAdminView
      */
     public function __construct()
     {
-        $this->_splurgyPager = new SplurgyPager();
-        $this->_splurgyEmbed = new SplurgyEmbed(get_option('splurgyToken'));
         $this->_templateGenerator = new TemplateGenerator();
         $this->_path = dirname(__FILE__). '/view-templates/';
         $this->_templateGenerator->setPath($this->_path);
@@ -67,27 +61,29 @@ class WordPressAdminView
 
     public function addPostMetaBoxOfferList()
     {
-        /** Removing this since we want only short codes working on the Posts
-         * add_meta_box(
-         *   'myplugin_sectionid', __('Splurgy Offers!', 'myplugin_textdomain'),
-         * array($this, 'postMetaBoxOfferList'), 'post', 'side', 'high'
-        );**/
+
+        // Splurgy Token sections
+        add_meta_box(
+            'myplugin_sectionid', __('Splurgy Token', 'myplugin_textdomain'),
+            array($this, 'pageMetaBoxOfferList'), 'post', 'side', 'high'
+        );
 
         add_meta_box(
-            'myplugin_sectionid', __('Splurgy Page Lock', 'myplugin_textdomain'),
+            'myplugin_sectionid', __('Splurgy PageLock™ Token', 'myplugin_textdomain'),
             array($this, 'pageMetaBoxOfferList'), 'page', 'side', 'high'
+        );
+
+        // Short code help sections
+        add_meta_box(
+            'myplugin_sc_sectionid', __(
+                'Splurgy Short Code Help', 'myplugin_sc_textdomain'
+            ), array($this, 'pagePostMetaBoxShortCodeHelp'), 'post', 'normal', 'high'
         );
 
         add_meta_box(
             'myplugin_sc_sectionid', __(
                 'Splurgy Short Code Help', 'myplugin_sc_textdomain'
             ), array($this, 'pagePostMetaBoxShortCodeHelp'), 'page', 'normal', 'high'
-        );
-
-        add_meta_box(
-            'myplugin_sc_sectionid', __(
-                'Splurgy Short Code Help', 'myplugin_sc_textdomain'
-            ), array($this, 'pagePostMetaBoxShortCodeHelp'), 'post', 'normal', 'high'
         );
     }
     
@@ -102,57 +98,50 @@ class WordPressAdminView
         wp_nonce_field(plugin_basename(__FILE__), 'splurgyOfferNonce');
 
         $sOfferPowerSwState = get_post_custom_values('SplurgyOfferPowerSwitch');
-        $splurgyOfferId = get_post_custom_values('SplurgyOfferId');
+        $splurgyPostToken = "none";
+        if(!is_null(get_post_custom_values('splurgyPostToken'))) {        
+            $splurgyPostToken = get_post_custom_values('splurgyPostToken');
+        }
+
         $TestMode = get_post_custom_values('TestMode');
-        $unlocktext = get_post_custom_values('unlocktext');
-        $unlocktextinput = '';
-        $checked = '';
-        $testchecked = '';
-        $showOfferId = 'style="display: none;"';
+        $checked = ('on' == $sOfferPowerSwState[0])
+                    ? "checked=checked"
+                    : '';
 
-        if ('on' == $sOfferPowerSwState[0]) {
-            $checked = "checked='checked'";
-            $showOfferId = "style='display: inline;'";
-        }
+        $testchecked = ('true' == $TestMode[0])
+                        ? ''
+                        : "checked=checked";
 
-        if ('true' == $TestMode[0]) {
-            $testchecked = 'checked=checked';
-        }
-        if ('false' == $TestMode[0]) {
-            $testchecked = '';
-        }
+        echo "<div class='offerPowerSwitch'>"
+                ."<input $checked type='checkbox' name='offerPowerSwitch' id='offerPowerSwitch' />"
+            ."</div>";
 
-        if (!empty($unlocktext[0]) && $unlocktext[0] != 'true') {
-            $unlocktextinput = $unlocktext[0];
-        }
+        echo "<div id='token_input' style='word-wrap: break-word;'>"
+                ."Current PageLock token: <br> <b>$splurgyPostToken[0]</b><br>"
+                ."<input type='text' placeholder='Location Token' name='token' id='token' /><br/>"
+            ."</div>";    
+        
+        echo "<div>"
+                ."<p class='tooltip_question'>What does the switch do?</p>"
+                ."Turning this switch on will enable PageLock only if you specify a token below. Click the button, and then update your post."
+            ."</div>";
 
-        $currentOfferId =  "Default Offer is set";
-        if (!empty($splurgyOfferId)) {
-            $offerId = $splurgyOfferId[0];
-            $currentOfferId =  "Current showing offer #: <b>" .$offerId. "</b>";
-        }
+        echo "<div>"
+                ."<p class='tooltip_question'>Where is my location token?</p>"
+                ."You can find your Location token in the<br/> <a href='http://offers.splurgy.com/channels' target='_blank'>Splurgy Locations Panel</a>.<br/>"
+            ."</div>";
 
-        $this->_templateGenerator->setTemplateName('pageMetaBoxOfferList');
-        $this->_templateGenerator->setPatterns(
-            array('{$checked}', '{$testchecked}', '{$showOfferId}',
-                '{$currentOfferId}', '{$unlocktextinput}')
-        );
-        $this->_templateGenerator->setReplacements(
-            array($checked, $testchecked, $showOfferId, $currentOfferId,
-                $unlocktextinput)
-        );
-        echo $this->_templateGenerator->getTemplate();
+        echo "<div id='advanced'>"
+                ."<a id='Advanced' title='Advanced'>Advanced Menu</a>"
+                ."<div id='advancedPanel'>"
+                    ."<div class='testmode'>"
+                        ."<input {$testchecked} type='checkbox' name='testmode' id='testmode' />"
+                        ."<label id='testmodelabel'>Test mode</label><a id='testmodeq'>?</a>"
+                    ."</div>"
+                ."</div>"
+            ."</div>​";
     }
     
-    /**
-     * Embeds Analytics
-     *
-     * @return type None
-     */
 
-    public function analyticsEmbed()
-    {
-        echo $this->_splurgyEmbed->getEmbed('analytics')->getTemplate();
-    }
 }
 ?>

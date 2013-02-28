@@ -24,6 +24,7 @@ require_once 'WordpressAdminView.php';
  * @license  http://opensource.org/licenses/MIT MIT
  * @link     http://www.splurgy.com Splurgy
  */
+global $post;
 
 class WordpressHooks
 {
@@ -57,40 +58,32 @@ class WordpressHooks
             'admin_head', array($this->_wpSettingsView, 'settingsPagePostHandler')
         );
 
-        /** Settings page hook analytics */
-        add_action('admin_head', array( $this->_wpAdminView, 'analyticsEmbed' ));
-
+        
         /** Hook for adding admin menus */
         add_action('admin_menu', array( $this, 'adminMenu' ));
 
         /** Add shortcode button */
         add_shortcode('splurgy', array($this->_wordpressView, 'splurgyShortCode'));
 
-        $token = get_option('splurgyToken'); // change to get_option('token');
-        if (!empty($token)) {
 
-            /** Hook for adding admin menus */
-            add_action('the_content', array( $this->_wordpressView, 'offer' ));
-
-            /** Hook on the analytics embed */
-            add_action('wp_head', array( $this->_wpAdminView, 'analyticsEmbed' ));
+        /** Hook for adding admin menus */
+        add_action('the_content', array( $this->_wordpressView, 'offer' ), $post->ID);
 
 
-            /** Add New post meta box */
-            add_action(
-                'add_meta_boxes', array(
-                $this->_wpAdminView, 'addPostMetaBoxOfferList')
-            );
+        /** Add New post meta box */
+        add_action(
+            'add_meta_boxes', array(
+            $this->_wpAdminView, 'addPostMetaBoxOfferList')
+        );
 
-            /** Save Splurgy offer post meta data */
-            add_action(
-                'save_post', array($this->_wordpressView, 'savePostMetaBoxOfferData')
-            );
+        /** Save Splurgy offer post meta data */
+        add_action(
+            'save_post', array($this->_wordpressView, 'savePostMetaBoxOfferData')
+        );
 
-            /** JavaScript files */
-            add_action('init', array( $this, 'javascriptEnque'));
+        /** JavaScript files */
+        add_action('init', array( $this, 'javascriptEnque'));
 
-        }
 
         /** Display error/success messages - This should always be last */
         add_action(
@@ -127,13 +120,6 @@ class WordpressHooks
     public function requiredJsEnqueue()
     {
         wp_enqueue_script('jquery');
-
-        /** Simpletip */
-        wp_enqueue_script(
-            'jquery-simpletip', plugins_url(
-                '/splurgy-wp-plugin/js/vendors/jquery.simpletip-1.3.1.min.js'
-            )
-        );
 
         /** jconfirmaction */
         wp_enqueue_script(

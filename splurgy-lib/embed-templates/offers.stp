@@ -1,8 +1,0 @@
-<!-- start Splurgy Embed widget --><div id="splurgy-page-offer">
-<script type="text/javascript">
-window._splurgy_frames = window._splurgy_frames || [];
-window._splurgy_frames.push({
-    offer_id: {$offerid}, // set this value to a specific offer ID to hardcode what is shown
-    test_mode: false // set to true to enable diagnostic mode
-}); // this embed will expand into the area containing it
-</script></div><div class="splurgy-frame-un"></div><!-- end Splurgy Embed widget -->

@@ -3,5 +3,5 @@
 [splurgy] </br> </br>
 and will display the active promotion assigned to this channel. </br> </br>
 You can also specify a valid offer id of the promotion </br> </br>
-[splurgy offerid=xxx] </label>
+[splurgy type=coupon token=c_1234] </label>
 </div>

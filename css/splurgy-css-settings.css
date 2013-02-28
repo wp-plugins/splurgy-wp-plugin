@@ -2,7 +2,7 @@ div#settingPageTooltip {
     width: 300px;
 }
 
-a#settingPageTooltip {
+.tooltip_question {
     cursor: help;
     border-bottom: 1px dotted;
 }

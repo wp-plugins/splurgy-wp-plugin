@@ -2,9 +2,9 @@
 Contributors: splurgy, dougymak, HaiVo
 Donate link:
 Tags: splurgy, social, social engagement, social media, social marketing, social promotions, social giveaway, social sweepstakes, social coupons, social offers
-Requires at least: 3.4
-Tested up to: 3.4
-Stable tag: 1.1.1
+Requires at least: 3.5.1 
+Tested up to: 3.5.1 
+Stable tag: 1.2.0
 License: MITL
 License URI: 
 
@@ -77,8 +77,11 @@ The best way to contact us is by email at support@splurgy.com.
 
 == Changelog ==
 
+= 1.2.0 =
+Udpated plugin to support V4 Splurgy Embeds. Metaboxes now insert tokens instead of offer ids. 
+
 = 1.1.1 =
-Splurgy Short Code functionality added. Refactoring of code to reduce complexity of functions. Many changes.
+Splurgy Short Code functionality added. Refactoring of code to reduce complexity of functions. Many changes
 
 = 1.1 =
 Page lock feature added. Token storage updated. Many changes.

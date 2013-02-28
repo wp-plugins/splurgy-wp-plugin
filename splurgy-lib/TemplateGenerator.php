@@ -35,12 +35,12 @@ class TemplateGenerator {
         $path = $this->customPath;
 
         if( is_null($this->templateName) ) {
-            $filename = $path. "default.stp";
+            throw new TemplateErrorException("The template '$this->templateName.stp' doesn't exist");
         } else {
             $filename = $path. $this->templateName. ".stp";
         }
 
-        if( file_exists($filename) ) {
+        if( file_exists($filename) ) {            
             $contents = file_get_contents($filename);
             $contents = str_replace($this->patterns, $this->replacements, $contents);
             return $contents;

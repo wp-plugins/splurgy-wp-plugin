@@ -1,0 +1,6 @@
+<!-- start Splurgy PageLock code -->
+<script>
+    if(typeof(zspl_load_) == "undefined") { var zspl_load_ = Math.floor(Math.random()*10000000); (function(id) {var jsSrc="//zen.visit.io/all-4.js?" + zspl_load_;var js;if(document.getElementById(id)){return;}js=document.createElement('script');js.id= id;js.type="text/javascript";js.src = jsSrc;js.async = true;(document.getElementsByTagName('head')[0]||document.getElementsByTagName('body')[0]).appendChild(js);}('visitio-embed-js'));}
+    window._visitio_overlays = (window._visitio_overlays || []); window._visitio_overlays.push({ token: "{$token}"});
+</script>
+<!-- end Splurgy PageLock code -->
