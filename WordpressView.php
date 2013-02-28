@@ -94,14 +94,12 @@ class WordpressView
                 $token = $post_meta_data[0]; 
             }
         } 
-        var_dump($token);
         echo do_shortcode($content);
         $sOfferPowerSwState = get_post_custom_values('SplurgyOfferPowerSwitch');
         if ('on' == $sOfferPowerSwState[0]) {
             if (!is_page() && is_single()) {
                 echo $this->_V4Embeds->coupon($token);
             } elseif (is_page()) {
-                var_dump($this->_V4Embeds->pagelock($token));
                 echo $this->_V4Embeds->pagelock($token);                   
             }
         }
